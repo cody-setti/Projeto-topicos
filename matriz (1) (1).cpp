@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <math.h>
-#include <ctime>
+#include <ctime>	// uso da funcao clock() para contar o tempo de partida
 
 using namespace std;
 
@@ -85,9 +85,13 @@ class Jogo_Logica
 int main()
 {
 	
-	//	Declaração dos objetos das classes.
+	//	DeclaraÃ§Ã£o dos objetos das classes.
 	
 	Jogo_Logica Logica;
+	
+	// Contagem do tempo de jogo
+		// Armazenamento do valor de clock() quando o jogo comeca
+	double tempo_de_inicio_do_jogo = clock();
 	
 	//	Leitura da quantidade de Discos.
 	
@@ -108,21 +112,21 @@ int main()
 		cout<<endl;
 	}
 	
-	//	Declaração das hastes para o jogo e Tabuleiro.
+	//	DeclaraÃ§Ã£o das hastes para o jogo e Tabuleiro.
 	
 	int Haste_Gabarito[Logica.Qnt_Discos+1];
 	int Haste_1[Logica.Qnt_Discos+1];
 	int Haste_2[Logica.Qnt_Discos+1]={0};
 	int Haste_3[Logica.Qnt_Discos+1]={0}; 
 	
-	// Declaração das matrizes para impressão do jogo.
+	// DeclaraÃ§Ã£o das matrizes para impressÃ£o do jogo.
 	
 	//char Tabuleiro[((Logica.Qnt_Discos)*6)-1][((Logica.Qnt_Discos)*6)-1] = {NULL};
 	char Haste_1M[Logica.Qnt_Discos+1][(6*(Logica.Qnt_Discos))-1] = {" "};
 	char Haste_2M[Logica.Qnt_Discos+1][(6*(Logica.Qnt_Discos))-1] = {" "};
 	char Haste_3M[Logica.Qnt_Discos+1][(6*(Logica.Qnt_Discos))-1] = {" "};
 	
-	//	Atribuição dos discos.
+	//	AtribuiÃ§Ã£o dos discos.
 	
 	for (int i=0;i<Logica.Qnt_Discos+1;i++)
 	{
@@ -130,14 +134,14 @@ int main()
 		Haste_1[i]=i;
 	}
 	
-	//	Atribuição dos ponteiros.
+	//	AtribuiÃ§Ã£o dos ponteiros.
 	
 	Logica.Ponteiro_Haste_Gab=&Haste_Gabarito[0];
 	Logica.Ponteiro_Haste_1=&Haste_1[0];
 	Logica.Ponteiro_Haste_2=&Haste_2[0];
 	Logica.Ponteiro_Haste_3=&Haste_3[0];
 	
-	//	Criação de 3 matrizes, uma para cada Pino (Haste)
+	//	CriaÃ§Ã£o de 3 matrizes, uma para cada Pino (Haste)
 		
 		
 		for (int i=0;i<Logica.Qnt_Discos+1;i++)
@@ -222,7 +226,7 @@ int main()
 			
 		}
 		
-		//Impressão gráfica.
+		//ImpressÃ£o grÃ¡fica.
 		
 		for(int i=0;i<Logica.Qnt_Discos+1;i++)
 		{
@@ -269,7 +273,7 @@ int main()
 			}
 		}
 		
-		//	Escolha da haste destinatária.
+		//	Escolha da haste destinatÃ¡ria.
 		
 		cout<<"\nDigite a haste que recebera um disco: ";
 		Logica.Verificacao=false;
@@ -290,7 +294,7 @@ int main()
 			}
 		}
 		
-		//	Possibilidades de permutação dos discos.
+		//	Possibilidades de permutaÃ§Ã£o dos discos.
 		
 		if (Logica.Macho=='1'&&Logica.Femea=='2')
 		{
@@ -322,7 +326,7 @@ int main()
 			Logica.Envio_Pino(Logica.Ponteiro_Haste_3,Logica.Ponteiro_Haste_2);
 		}
 			
-		//	Impressão vetorial dos discos.
+		//	ImpressÃ£o vetorial dos discos.
 		
 		cout<<endl;
 		for (int i=0;i<Logica.Qnt_Discos+1;i++)
@@ -408,7 +412,7 @@ int main()
 		}
 		cout<<endl;
 		
-		//Impressão gráfica.
+		//ImpressÃ£o grÃ¡fica.
 		
 		for(int i=0;i<Logica.Qnt_Discos+1;i++)
 		{
@@ -432,7 +436,7 @@ int main()
 			cout<<endl;
 		}
 	
-		//	Verificação de término do jogo.
+		//	VerificaÃ§Ã£o de tÃ©rmino do jogo.
 		
 		Logica.Termino=true;
 		for (int i=0;i<Logica.Qnt_Discos+1;i++)
@@ -445,4 +449,8 @@ int main()
 	}
 	
 	cout<<"\nJogo Concluido.\n";
+	
+	// Contagem do tempo de jogo
+		// Calculo e exibicao do tempo de jogo
+	cout << "\nEsta partida de Torres de Hanoi levou " << (clock() - tempo_de_inicio_do_jogo)/1000.0 << " segundos.";
 }
